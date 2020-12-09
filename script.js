@@ -1,10 +1,9 @@
 const screen = document.getElementsByClassName("screen")[0];
 let count = 0;
 
+
 screen.addEventListener("click", (e) => {
     count += 1;
-    const ballon = document.getElementsByClassName("ballon")[0];
-    fall(ballon)
     if(count == 20) {
         const ballon = Array.from(document.getElementsByClassName("ballon"));
         ballon.map(t => t.classList.add("fall"));
@@ -12,9 +11,10 @@ screen.addEventListener("click", (e) => {
     }
     const posX = e.clientX;
     const posY = e.clientY;
+    const ballon = document.createElement("div");
+    ballon.classList.add("ballon");
+    ballon.id =  'b' + posX + posY;
+    ballon.style.top = posY +"px";
+    ballon.style.left = posX + "px"
+    screen.appendChild(ballon)
 })
-
-function fall(div) {
-    console.log( div.style.width )
-    div.style.top = "calc(98% - " + div.style.height + "px)"
-}
